@@ -10,17 +10,17 @@
         canvas { display: block; margin: 0 auto; }
     </style>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/geometrydashdotcom/test.js')
-        .then(() => console.log('SW registered'))
-        .catch(err => console.error('SW failed', err));
+    async function start() {
+      await navigator.serviceWorker.register('/geometrydashdotcom/test.js');
+      await navigator.serviceWorker.ready;
+      navigator.serviceWorker.controller.postMessage({ levelId: 2 });
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = './assets/index-game.js';
+      document.body.appendChild(script);
     }
-    const levelId = 2;
-    navigator.serviceWorker.ready.then(reg => {
-      reg.active.postMessage({ levelId });
-    });
+    start();
   </script>
-  <script type="module" crossorigin src="./assets/index-game.js"></script>
   <script>
     // ResizeObserver catches iframe size changes that window.resize misses
     // (e.g. parent window maximize, snap, title bar drag)

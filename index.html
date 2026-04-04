@@ -9,6 +9,13 @@
         body { overflow: hidden; }
         canvas { display: block; margin: 0 auto; }
     </style>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/geometrydashdotcom/test.js')
+        .then(() => console.log('SW registered'))
+        .catch(err => console.error('SW failed', err));
+    }
+  </script>
   <script type="module" crossorigin src="./assets/index-game.js"></script>
   <script>
     // ResizeObserver catches iframe size changes that window.resize misses
@@ -16,13 +23,6 @@
     new ResizeObserver(() => {
       window.dispatchEvent(new Event('resize'));
     }).observe(document.documentElement);
-  </script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/geometrydashdotcom/test.js')
-        .then(() => console.log('SW registered'))
-        .catch(err => console.error('SW failed', err));
-    }
   </script>
 </head>
 <body>

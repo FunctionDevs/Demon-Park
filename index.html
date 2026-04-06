@@ -39,7 +39,7 @@
 
   <button onclick="loadLevel('-1')">Stereo Madness</button>
   <button onclick="loadLevel('-23')">Every End</button>
-  <button onclick="const id = prompt('Enter level ID:');if (id === null) return;if (id.trim() === '') {alert('Please enter a Level ID');} else {loadLevel(id);}">Custom Level (from GD servers)</button>
+  <button onclick="const id = prompt('Enter level ID:');if (id === null) return; if (!Number.isInteger(num)) {alert('Invalid Level ID...');return;}if (id.trim() === '') {alert('Please enter a Level ID');} else {loadLevel(id);}">Custom Level (from GD servers)</button>
 
   <script>
     function loadLevel(id) {

@@ -48,6 +48,46 @@
     });
   </script>
   <script>
+    const officialLevels = [
+      "Stereo Madness",
+      "Back on Track",
+      "Polargeist",
+      "Dry Out",
+      "Base After Base",
+      "Cant Let Go",
+      "Jumper",
+      "Time Machine",
+      "Cycles",
+      "xStep",
+      "Clutterfunk",
+      "Theory of Everything",
+      "Electroman Adventures",
+      "Clubstep",
+      "Electrodynamix",
+      "Hexagon Force",
+      "Blast Processing",
+      "Theory of Everything 2",
+      "Geometrical Dominator",
+      "Deadlocked",
+      "Fingerdash",
+      "Dash"
+    ];
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawId = urlParams.get('id');
+
+    if (rawId) {
+      const levelID = parseInt(rawId);
+      if (levelID < 0) {
+        const index = Math.abs(levelID) - 1;
+    
+        if (officialLevels[index]) {
+          window.levelName = officialLevels[index];
+        } else {
+          window.levelName = "Unknown";
+        }
+    }
+  </script>
+  <script>
     // ResizeObserver catches iframe size changes that window.resize misses
     // (e.g. parent window maximize, snap, title bar drag)
     new ResizeObserver(() => {
